@@ -26,8 +26,6 @@ var ToDoList = Backbone.Collection.extend({
   },
 });
 
-Todos = new ToDoList();
-
 var ToDoView = Backbone.View.extend({
   tagName: 'div',
   template: _.template($('#todo-item').html()),  //"hello: <%= title %>"), //
@@ -38,7 +36,7 @@ var ToDoView = Backbone.View.extend({
   },
 
   render: function() {
-    $('#todo').html(this.template(this.model.toJSON()));
+    $('#todo').append(this.template(this.model.toJSON()));
     return this;
   }
 });
@@ -54,8 +52,9 @@ $(function() {
   todoView = new ToDoView({model: todo1});
   todoView.render();
   todo2 = new ToDo();
-  todo2.set('title','THIS IS A TEST');
+  todo2.set('title','THIS IS A TEST2');
   todoView2 = new ToDoView({model: todo2});
   todoView2.render();
+  Todos = new ToDoList();
   console.log('end ready');
 });
