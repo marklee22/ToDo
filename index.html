@@ -1,21 +1,39 @@
 <html>
   <head>
-    <script src="js/lib/jquery-1.9.1.min.js"></script>
-    <script src="js/lib/underscore-min.js"></script>
-    <script src="js/lib/backbone-min.js"></script>
+    <script src="lib/utils/jquery-1.9.1.min.js"></script>
+    <script src="lib/utils/underscore-min.js"></script>
+    <script src="lib/utils/backbone-min.js"></script>
 
+    <!-- Model includes -->
+    <script type="text/javascript" src="src/data.js"></script>
+    <script type="text/javascript" src="src/Todo.js"></script>
+    <script type="text/javascript" src="src/TodoList.js"></script>
+    <script type="text/javascript" src="src/App.js"></script>
+
+    <!-- View includes -->
+    <script type="text/javascript" src="src/TodoEntryView.js"></script>
+    <script type="text/javascript" src="src/TodoListView.js"></script>
+    <script type="text/javascript" src="src/AppView.js"></script>
+
+    <!-- Document onload -->
+    <script type="text/javascript">
+      $(document).ready(function() {
+        // Create the default todo list
+        var todos = new TodoList(todoData);
+        console.log(todos);
+        var app = new App({todos: todos});
+        console.log(app);
+        var appView = new AppView({model: app});
+        appView.render();
+      });
+    </script>
   </head>
   <body>
-    <script id="todo-item" type="text/template">
-      <div class="view">
-        <p><%=completed%>-<%=title%></p>
-      </div>
-    </script>
-    <script src="js/todo.js"></script>
     <div id="todo-app">
       <div id="todo-list">
       </div>
     </div>
+    <input type="text"></input>
     <button id="add-todo">Add</button>
   </body>
 </html>
